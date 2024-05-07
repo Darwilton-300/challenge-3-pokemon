@@ -18,9 +18,7 @@ const POKEMON_TYPES_ICONS = {
 console.log(data)
 
 // Tu código aquí
-
 const pokemonData = data.pokemon;
-
 
 function renderPokemon(pokemon) {
   const typeLabel = pokemon.type[0]; 
@@ -29,7 +27,7 @@ function renderPokemon(pokemon) {
   const markup = `
     <div class="pokemon-card ${typeLabelClass}">
       <div class="pokemon-card__type-label ${typeLabelClass}">
-        <i class="pokemon-card__name-icon bx bx-${typeLabel.toLowerCase()} ${typeLabelClass}"></i>
+        <i class="pokemon-card__name-icon bx ${POKEMON_TYPES_ICONS[typeLabel]} ${typeLabelClass}"></i>
         <span>${typeLabel.toLowerCase()}</span>
       </div>
       <div class="pokemon-card__image">
