@@ -18,4 +18,4 @@ const POKEMON_TYPES_ICONS = {
 console.log(data)
 // Tu código aquí
 
-console.log("Prueba no más")
+console.log("Prueba no más, sisa una prueba")
