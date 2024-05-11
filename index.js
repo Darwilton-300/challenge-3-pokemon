@@ -17,7 +17,7 @@ const POKEMON_TYPES_ICONS = {
 
 console.log(data)
 
-// Tu código aquí
+// Hito 1 - Iteracion de los datos para su posterior renderizado 
 const pokemonData = data.pokemon;
 
 function renderPokemon(pokemon) {
@@ -50,8 +50,49 @@ const cardsContainer = document.querySelector('.cards');
 let pokemonCards = '';
 pokemonData.forEach(pokemon => {
   pokemonCards += renderPokemon(pokemon);
+  
 });
 
 
 cardsContainer.innerHTML = pokemonCards;
+
+//hito 2 - Aplicacion de los filtros para la busqueda de pokemon 
+
+// Función para aplicar los filtros
+function applyFilters() {
+  const typeFilter = document.getElementById('types').value;
+  const weaknessFilter = document.getElementById('weaknesses').value;
+
+  const filteredPokemon = pokemonData.filter(pokemon => {
+    const hasType = !typeFilter || pokemon.type.includes(typeFilter);
+    const hasWeakness = !weaknessFilter || pokemon.weaknesses.includes(weaknessFilter);
+
+    return hasType && hasWeakness;
+  });
+
+  renderFilteredPokemon(filteredPokemon);
+}
+
+// Función para limpiar los filtros y mostrar todos los Pokémon nuevamente
+function cleanFilters() {
+  document.getElementById('types').value = '';
+  document.getElementById('weaknesses').value = '';
+  renderFilteredPokemon(pokemonData);
+}
+
+// Función para renderizar los Pokémon filtrados en el DOM
+function renderFilteredPokemon(filteredPokemon) {
+  const cardsContainer = document.querySelector('.cards');
+  let pokemonCards = '';
+
+  filteredPokemon.forEach(pokemon => {
+    pokemonCards += renderPokemon(pokemon);
+  });
+
+  cardsContainer.innerHTML = pokemonCards;
+}
+
+// Agregar eventos a los botones de filtrado
+document.querySelector('.filter.buttons button').addEventListener('click', applyFilters);
+document.querySelector('.filter.buttons button.reverted').addEventListener('click', cleanFilters);
 
