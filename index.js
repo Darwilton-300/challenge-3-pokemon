@@ -61,13 +61,13 @@ cardsContainer.innerHTML = pokemonCards;
 // Función para aplicar los filtros
 function applyFilters() {
   const typeFilter = document.getElementById('types').value;
-  const weaknessFilter = document.getElementById('weaknesses').value;
+  const weaknessesFilter = document.getElementById('weaknesses').value;
 
   const filteredPokemon = pokemonData.filter(pokemon => {
     const hasType = !typeFilter || pokemon.type.includes(typeFilter);
-    const hasWeakness = !weaknessFilter || pokemon.weaknesses.includes(weaknessFilter);
+    const hasWeaknesses = !weaknessesFilter || pokemon.weaknesses.includes(weaknessesFilter);
 
-    return hasType && hasWeakness;
+    return hasType && hasWeaknesses;
   });
 
   renderFilteredPokemon(filteredPokemon);
