@@ -96,3 +96,19 @@ function renderFilteredPokemon(filteredPokemon) {
 document.querySelector('.filter.buttons button').addEventListener('click', applyFilters);
 document.querySelector('.filter.buttons button.reverted').addEventListener('click', cleanFilters);
 
+//Hito 3 - Aplicacion de busqueda por nombre
+
+document.addEventListener("keyup", e=>{
+  
+  if (e.target.matches("#search-bar")){
+
+    document.querySelectorAll("cards").forEach(pokemon => {
+
+      pokemon.textContent.toLowerCase().includes(e.target.value.toLowerCase())
+        ?pokemon.classList.remove("filter")
+        :pokemon.classList.add("filter")
+    })
+  }
+})
+
+
