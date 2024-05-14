@@ -80,6 +80,7 @@ function applyFilters() {
 function cleanFilters() {
   document.getElementById('types').value = '';
   document.getElementById('weaknesses').value = '';
+  document.getElementById('order').value = '';
   renderFilteredPokemon(pokemonData);
 }
 
@@ -116,4 +117,35 @@ document.addEventListener("keyup", e=>{
   }
 })
 
-//Hito 4 
+//Hito 4 - Aplicación de orden ascendente y descendente
+
+document.addEventListener("DOMContentLoaded", ()=>{
+   const orderSelect = document.getElementById('order');
+   const cardsContainer = document.querySelector('.cards');
+
+   orderSelect.addEventListener('change', ()=>{
+    const order = orderSelect.value;
+    const pokemonCards = Array.from(cardsContainer.querySelectorAll('.pokmeon-card'));
+
+    pokemonCards.sort((a, b) => {
+      const nameA = a.querySelector('.pokemon-card__name h4').textContent
+      const nameB = b.querySelector('.pokemon-card__name h4').textContent
+
+      if (order === 'ascendant') {
+        return nameA.localeCompare(nameB);
+      }else if (order === 'descendant'){
+        return nameB.localeCompare(nameA);
+      }else{
+        return 0;
+      }
+    });
+
+    cardsContainer.innerHTML = '';
+    pokemonCards.forEach(card =>{
+      cardsContainer.appendChild(card);
+    });
+
+  })
+
+})
+
