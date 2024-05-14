@@ -60,13 +60,16 @@ cardsContainer.innerHTML = pokemonCards;
 
 // Función para aplicar los filtros
 function applyFilters() {
+  console.log("hola")
   const typeFilter = document.getElementById('types').value;
   const weaknessesFilter = document.getElementById('weaknesses').value;
 
   const filteredPokemon = pokemonData.filter(pokemon => {
     const hasType = !typeFilter || pokemon.type.includes(typeFilter);
     const hasWeaknesses = !weaknessesFilter || pokemon.weaknesses.includes(weaknessesFilter);
-
+    console.log({hasType})
+    console.log({hasWeaknesses})
+    
     return hasType && hasWeaknesses;
   });
 
@@ -93,7 +96,7 @@ function renderFilteredPokemon(filteredPokemon) {
 }
 
 // Agregar eventos a los botones de filtrado
-document.querySelector('.filter.buttons button').addEventListener('click', applyFilters);
+document.querySelector('#applybtn').addEventListener('click', applyFilters);
 document.querySelector('.filter.buttons button.reverted').addEventListener('click', cleanFilters);
 
 //Hito 3 - Aplicacion de busqueda por nombre
@@ -102,13 +105,15 @@ document.addEventListener("keyup", e=>{
   
   if (e.target.matches("#search-bar")){
 
-    document.querySelectorAll("cards").forEach(pokemon => {
+    console.log(e.target.value)
+    const inputValue = e.target.value
 
-      pokemon.textContent.toLowerCase().includes(e.target.value.toLowerCase())
-        ?pokemon.classList.remove("filter")
-        :pokemon.classList.add("filter")
-    })
+    const filteredPokemon = pokemonData.filter(pokemon => {
+      
+      return pokemon.name.includes(inputValue);
+    });
+    renderFilteredPokemon(filteredPokemon)
   }
 })
 
-
+//Hito 4 
