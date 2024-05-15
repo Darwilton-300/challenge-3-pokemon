@@ -119,33 +119,31 @@ document.addEventListener("keyup", e=>{
 
 //Hito 4 - Aplicación de orden ascendente y descendente
 
-document.addEventListener("DOMContentLoaded", ()=>{
-   const orderSelect = document.getElementById('order');
-   const cardsContainer = document.querySelector('.cards');
+document.addEventListener("DOMContentLoaded", () => {
+  const orderSelect = document.getElementById('order');
+  const cardsContainer = document.querySelector('.cards');
 
-   orderSelect.addEventListener('change', ()=>{
+  orderSelect.addEventListener('change', () => {
     const order = orderSelect.value;
-    const pokemonCards = Array.from(cardsContainer.querySelectorAll('.pokmeon-card'));
+    const pokemonCards = Array.from(cardsContainer.querySelectorAll('.pokemon-card'));
 
     pokemonCards.sort((a, b) => {
-      const nameA = a.querySelector('.pokemon-card__name h4').textContent
-      const nameB = b.querySelector('.pokemon-card__name h4').textContent
+      const nameA = a.querySelector('.pokemon-card__name h4').textContent.toLowerCase();
+      const nameB = b.querySelector('.pokemon-card__name h4').textContent.toLowerCase();
 
       if (order === 'ascendant') {
         return nameA.localeCompare(nameB);
-      }else if (order === 'descendant'){
+      } else if (order === 'descendant') {
         return nameB.localeCompare(nameA);
-      }else{
+      } else {
         return 0;
       }
     });
 
     cardsContainer.innerHTML = '';
-    pokemonCards.forEach(card =>{
+    pokemonCards.forEach(card => {
       cardsContainer.appendChild(card);
     });
-
-  })
-
-})
+  });
+});
 
