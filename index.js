@@ -125,11 +125,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   orderSelect.addEventListener('change', () => {
     const order = orderSelect.value;
-    const pokemonCards = Array.from(cardsContainer.querySelectorAll('.pokemon-card'));
+    const pokemonCards = pokemonData;
 
     pokemonCards.sort((a, b) => {
-      const nameA = a.querySelector('.pokemon-card__name h4').textContent.toLowerCase();
-      const nameB = b.querySelector('.pokemon-card__name h4').textContent.toLowerCase();
+      console.log(a)
+      console.log(b)
+      const nameA = a.name;
+      const nameB = b.name;
 
       if (order === 'ascendant') {
         return nameA.localeCompare(nameB);
@@ -140,10 +142,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    let pokemonCardsHtml = ""
     cardsContainer.innerHTML = '';
     pokemonCards.forEach(card => {
-      cardsContainer.appendChild(card);
+      pokemonCardsHtml += renderPokemon(card);
     });
+    cardsContainer.innerHTML = pokemonCardsHtml;
   });
 });
 
